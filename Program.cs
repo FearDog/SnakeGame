@@ -16,25 +16,11 @@ namespace SnakeGame
       Point p2 = new Point(4, 5, '#');
       p2.Draw();
 
-      List<int> numList = new List<int>();
-      numList.Add(0);
-      numList.Add(1);
-      numList.Add(2);
+      HorisontalLine hline = new HorisontalLine(5, 10, 8, '+');
+      hline.Draw();
 
-      int x = numList[0];
-      int y = numList[1];
-      int z = numList[2];
-
-      foreach(int i in numList)
-      {
-        Console.WriteLine(i);
-      }
-
-      numList.RemoveAt(0);
-
-      List<Point> pList = new List<Point>();
-      pList.Add(p1);
-      pList.Add(p2);
+      VerticalLine vline = new VerticalLine(1, 7, 10, '+');
+      vline.Draw();
 
       Console.ReadLine();
     }
