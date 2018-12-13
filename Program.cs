@@ -10,17 +10,22 @@ namespace SnakeGame
   {
     static void Main(string[] args)
     {
-      Point p1 = new Point(1, 2, '*');
-      p1.Draw();
+      Console.SetWindowSize(80, 25);
+      Console.SetBufferSize(80, 25);
 
-      Point p2 = new Point(4, 5, '#');
-      p2.Draw();
+      // Отрисовка рамочки
+      HorisontalLine topline = new HorisontalLine(0, 78, 0, '+');
+      HorisontalLine bottomline = new HorisontalLine(0, 78, 24, '+');
+      VerticalLine leftline = new VerticalLine(1, 23, 0, '+');
+      VerticalLine rightline = new VerticalLine(1, 24, 78, '+');
+      leftline.Draw();
+      rightline.Draw();
+      topline.Draw();
+      bottomline.Draw();
 
-      HorisontalLine hline = new HorisontalLine(5, 10, 8, '+');
-      hline.Draw();
-
-      VerticalLine vline = new VerticalLine(1, 7, 10, '+');
-      vline.Draw();
+      //Отрисовка точки
+      Point p = new Point(4, 5, '*');
+      p.Draw();
 
       Console.ReadLine();
     }
