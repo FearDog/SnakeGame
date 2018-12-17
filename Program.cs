@@ -11,48 +11,30 @@ namespace SnakeGame
   {
     static void Main(string[] args)
     {
-      Console.SetWindowSize(80, 25);
-      Console.SetBufferSize(80, 25);
+      VerticalLine vl = new VerticalLine(0, 10, 5, '%');
+      Draw(vl);
 
-      // Отрисовка рамочки
-      HorisontalLine topline = new HorisontalLine(0, 78, 0, '+');
-      HorisontalLine bottomline = new HorisontalLine(0, 78, 24, '+');
-      VerticalLine leftline = new VerticalLine(1, 23, 0, '+');
-      VerticalLine rightline = new VerticalLine(1, 24, 78, '+');
-      leftline.Draw();
-      rightline.Draw();
-      topline.Draw();
-      bottomline.Draw();
-
-      //Отрисовка точки
       Point p = new Point(4, 5, '*');
-      Snake snake = new Snake(p, 4, Direction.RIGTH);
-      snake.Draw();
+      Figure fSnake = new Snake(p, 4, Direction.RIGTH);
+      Draw(fSnake);
+      Snake snake = (Snake)fSnake;
 
-      FoodCreator foodCreator = new FoodCreator(80, 25, '$');
-      Point food = foodCreator.CreateFood();
-      food.Draw();
+      HorisontalLine hl = new HorisontalLine(0, 5, 6, '&');
 
-      while(true)
+      List<Figure> figures = new List<Figure>();
+      figures.Add(fSnake);
+      figures.Add(vl);
+      figures.Add(hl);
+
+      foreach (var f in figures)
       {
-        if (snake.Eat(food))
-        {
-          food = foodCreator.CreateFood();
-          food.Draw();
-        }
-        else
-          snake.Move();
-
-        Thread.Sleep(100);
-
-        if (Console.KeyAvailable)
-        {
-          ConsoleKeyInfo key = Console.ReadKey();
-          snake.HandleKey(key.Key);
-        }
+        f.Draw();
       }
+    }
 
-      Console.ReadLine();
+    static void Draw(Figure figure)
+    {
+      figure.Draw();
     }
   }
 }
