@@ -14,15 +14,8 @@ namespace SnakeGame
       Console.SetWindowSize(80, 25);
       Console.SetBufferSize(80, 25);
 
-      // Отрисовка рамочки
-      HorisontalLine topline = new HorisontalLine(0, 78, 0, '+');
-      HorisontalLine bottomline = new HorisontalLine(0, 78, 24, '+');
-      VerticalLine leftline = new VerticalLine(1, 23, 0, '+');
-      VerticalLine rightline = new VerticalLine(1, 24, 78, '+');
-      leftline.Draw();
-      rightline.Draw();
-      topline.Draw();
-      bottomline.Draw();
+      Walls walls = new Walls(80, 25);
+      walls.Draw();
 
       //Отрисовка точки
       Point p = new Point(4, 5, '*');
@@ -35,6 +28,11 @@ namespace SnakeGame
 
       while(true)
       {
+        if(walls.IsHit(snake) || snake.IsHitTail())
+        {
+          break;
+        }
+
         if (snake.Eat(food))
         {
           food = foodCreator.CreateFood();
